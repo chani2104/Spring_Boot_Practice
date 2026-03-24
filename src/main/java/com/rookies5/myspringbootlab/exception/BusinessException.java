@@ -1,15 +1,20 @@
 package com.rookies5.myspringbootlab.exception;
 
+import lombok.Getter;
+import org.springframework.http.HttpStatus;
+
+@Getter
 public class BusinessException extends RuntimeException {
 
-    private final String code;
+    private final HttpStatus httpStatus;
 
-    public BusinessException(String code, String message) {
+    public BusinessException(String message) {
         super(message);
-        this.code = code;
+        this.httpStatus = HttpStatus.BAD_REQUEST;
     }
 
-    public String getCode() {
-        return code;
+    public BusinessException(String message, HttpStatus httpStatus) {
+        super(message);
+        this.httpStatus = httpStatus;
     }
 }
